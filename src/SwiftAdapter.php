@@ -2,17 +2,18 @@
 
 namespace Drupal\flysystem_swift;
 
+use Nimbusoft\Flysystem\OpenStack\SwiftAdapter;
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\Config;
 
 /**
- * Class SwiftAdapter
+ * Class SwiftAdapter.
  *
  * Wrapper around the upstream Swift adapter, with Drupal-specific tweaks.
  *
  * @package Drupal\flysystem_swift
  */
-class SwiftAdapter extends \Nimbusoft\Flysystem\OpenStack\SwiftAdapter {
+class SwiftAdapter extends SwiftAdapter {
 
   /**
    * Create a "directory," which is actually just a placeholder for later has()
@@ -21,6 +22,7 @@ class SwiftAdapter extends \Nimbusoft\Flysystem\OpenStack\SwiftAdapter {
    *
    * @param string $dirname
    * @param \League\Flysystem\Config $config
+   *
    * @return array|false
    */
   public function createDir($dirname, Config $config) {
@@ -32,6 +34,7 @@ class SwiftAdapter extends \Nimbusoft\Flysystem\OpenStack\SwiftAdapter {
    * "directory" placeholder created by self::createDir().
    *
    * @param string $path
+   *
    * @return array|bool|null
    */
   public function has($path) {
@@ -45,6 +48,7 @@ class SwiftAdapter extends \Nimbusoft\Flysystem\OpenStack\SwiftAdapter {
    * "directory" placeholder created by self::createDir().
    *
    * @param string $path
+   *
    * @return array|false
    */
   public function getMetadata($path) {

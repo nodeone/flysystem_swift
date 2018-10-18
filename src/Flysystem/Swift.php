@@ -78,7 +78,8 @@ class Swift implements FlysystemPluginInterface, ContainerFactoryPluginInterface
    *
    * Use with caution when the resulting URL may be cached beyond its validity.
    *
-   * @param string $uri The uri to retrieve a temporary URI for.
+   * @param string $uri
+   *   The uri to retrieve a temporary URI for.
    */
   public function getTemporaryUrl($uri) {
     $uri = str_replace('\\', '/', $this->getTarget($uri));
@@ -109,6 +110,9 @@ class Swift implements FlysystemPluginInterface, ContainerFactoryPluginInterface
     return $url->toString();
   }
 
+  /**
+   *
+   */
   private function generateTempQuery(string $path, string $key, int $length = 300, string $method = 'GET') {
     $expires = intval(time() + $length);
     return [
